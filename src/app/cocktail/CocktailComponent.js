@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Image, View, ScrollView, Text } from 'react-native';
+import { FlatList, Image, View, ScrollView, Text } from 'react-native';
 import CocktailHeaderDetail from './CocktailHeaderDetailComponent';
 import CocktailDetailCard from './CocktailDetailCardComponent';
+import {generateIngredientLabels} from '../common/Ingredients';
 
 
 class Cocktail extends Component {
@@ -31,7 +32,19 @@ class Cocktail extends Component {
         height: 300,
         flex: 1,
         width: null,
-      }}
+      },
+      ingredientsContainerStyle : {
+        paddingTop: 2,
+        marginLeft: 2,
+        height: 80,
+      },
+      instructionsHeadingStyle : {
+        paddingTop: 20,
+      },
+      instructionsTextStyle: {
+         paddingTop:14,
+      },
+    };
 
 
     const {
@@ -40,30 +53,48 @@ class Cocktail extends Component {
       headerTextStyle,
       imageStyle,
       thumbnailContainerStyle,
+      ingredientsContainerStyle,
+      instructionsHeadingStyle,
+      instructionsTextStyle
     } = styles;
 
 
 
     const cocktail=this.props.currentCocktail;
-    console.log("render cocktail" );
+
+
 
     const uri=cocktail.strDrinkThumb;
-    console.log(cocktail.strDrinkThumb );
+    const ingrendientsArray=generateIngredientLabels(cocktail);
+    console.log("ingrendientsArray");
+    console.log(ingrendientsArray);
+    const ingredientsMap = ingrendientsArray.map(x => ({key: x}));
+
+
+    console.log("ingrendientsMap");
+    console.log(ingredientsMap);
     return (
       <View>
         <CocktailHeaderDetail headerText={cocktail.strDrink} />
+        <ScrollView>
         <CocktailDetailCard>
           <Image source={{uri}}
             style={imageStyle}
             />
+            <View style={ingredientsContainerStyle}>
+              <FlatList
+                  data={ingredientsMap}
+                  renderItem={({item}) => <Text style={styles.ingredientitemStyle}>{item.key}</Text>}
+                  />
+            </View>
+            <Text style={instructionsHeadingStyle}>{'\u2022 How to prepare'}</Text>
+            <Text style={instructionsTextStyle}>{cocktail.strInstructions}</Text>
+
         </CocktailDetailCard>
+        </ScrollView>
       </View>
     );
   }
-
-
-
-
 
 }
 
