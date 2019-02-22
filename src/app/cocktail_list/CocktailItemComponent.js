@@ -1,33 +1,37 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
+import CocktailCard from './CocktailCardComponent';
+import CocktailCardPanel from './CocktailCardPanelComponent';
+
 const CocktailItem = (props) => {
   const { cocktail } = props;
   const {
     headerContentStyles,
-    textContentStyles,
+    detailContentStyles,
     headerTextStyle,
     thumbnailStyle,
     thumbnailContainerStyle,
-    textBaseStyle,
   } = styles;
   const uri = cocktail.strDrinkThumb;
   return (
-      <View style={textBaseStyle}>
-        <View style={textContentStyles}>
-            <View style={headerContentStyles}>
-              <Text style={headerContentStyles} >{cocktail.strDrink}</Text>
+      <CocktailCard>
+        <CocktailCardPanel>
+            <View style={detailContentStyles}>
+                <View style={headerContentStyles}>
+                  <Text style={headerContentStyles} >{cocktail.strDrink}</Text>
+                </View>
+                <Text style={headerContentStyles}>Ingredient 11</Text>
+                <Text style={headerContentStyles}>Ingredient 2</Text>
+                <Text style={headerContentStyles}>more ingredients</Text>
             </View>
-            <Text style={headerContentStyles}>Ingredient 11</Text>
-            <Text style={headerContentStyles}>Ingredient 2</Text>
-            <Text style={headerContentStyles}>more ingredients</Text>
-        </View>
-        <View style={thumbnailContainerStyle}>
-            <Image
-              source={{ uri }}
-              style={thumbnailStyle}
-              />
-        </View>
-      </View>
+            <View style={thumbnailContainerStyle}>
+                <Image
+                  source={{ uri }}
+                  style={thumbnailStyle}
+                  />
+            </View>
+          </CocktailCardPanel>
+      </CocktailCard>
     )
 }
 
@@ -43,19 +47,20 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  textContentStyles: {
+  detailContentStyles: {
     width: "70%",
     alignItems: 'flex-start',
+    justifyContent: 'space-around',
 
   },
   thumbnailContainerStyle: {
-    width: "30%",
     alignItems: 'flex-end',
+    justifyContent: 'space-around',
     marginLeft: 10,
     marginRight: 10,
   },
   textBaseStyle: {
-    flexDirection: 'row',
+
   }
 }
 
