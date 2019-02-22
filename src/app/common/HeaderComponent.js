@@ -23,6 +23,7 @@ const style = {
 
 const Header = (props) => {
   const { textStyle, viewStyle } = style;
+  console.log("Draw Header");
   return (
       <View style={viewStyle}>
         <Text style={textStyle}>

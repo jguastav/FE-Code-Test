@@ -9,13 +9,14 @@ import {AppRegistry,View,Text} from 'react-native';
 import {name as appName} from './app.json';
 import {headerLabel as headerLabel} from './src/app/common/labels.json';
 import Header from './src/app/common/HeaderComponent';
+import CocktailList from './src/app/cocktail_list/CocktailListComponent';
 
 
 const App = () => {
     return (
       <View>
         <Header headerText={headerLabel} />
-        <Text>Drinks List</Text>
+        <CocktailList />
       </View>
     );
 };
