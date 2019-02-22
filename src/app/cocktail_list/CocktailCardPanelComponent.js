@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 const CocktailCardPanel = (props) => {
-
-return (
-  <View style={styles.containerStyle}>
-    {props.children}
-  </View>
-)
-} 
+  const { onPress } = props;
+  return (
+    <TouchableOpacity
+        style={styles.containerStyle}
+        onPress={onPress}>
+      {props.children}
+    </TouchableOpacity>
+  )
+}
 const styles = {
   containerStyle: {
     borderBottomWidth: 1,

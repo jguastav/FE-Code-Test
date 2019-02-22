@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image,FlatList } from 'react-native';
 import CocktailCard from './CocktailCardComponent';
 import CocktailCardPanel from './CocktailCardPanelComponent';
 
@@ -11,18 +11,27 @@ const CocktailItem = (props) => {
     headerTextStyle,
     thumbnailStyle,
     thumbnailContainerStyle,
+    ingredientitemStyle,
+    ingredientsContainerStyle,
   } = styles;
   const uri = cocktail.strDrinkThumb;
   return (
       <CocktailCard>
-        <CocktailCardPanel>
+        <CocktailCardPanel onPress={() => alert("Clicked")}>
             <View style={detailContentStyles}>
                 <View style={headerContentStyles}>
-                  <Text style={headerContentStyles} >{cocktail.strDrink}</Text>
+                <Text style={headerContentStyles} >{cocktail.strDrink}</Text>
+                <View style={ingredientsContainerStyle}>
+                  <FlatList
+                      data={[
+                        {key: 'Ingredient 1'},
+                        {key: 'Ingredient 2'},
+                      ]}
+                      renderItem={({item}) => <Text style={styles.ingredientitemStyle}>{`\u2022 ${item.key}`}</Text>}
+                      />
+                  <Text style={ingredientitemStyle}>more ingredients</Text>
                 </View>
-                <Text style={headerContentStyles}>Ingredient 11</Text>
-                <Text style={headerContentStyles}>Ingredient 2</Text>
-                <Text style={headerContentStyles}>more ingredients</Text>
+                </View>
             </View>
             <View style={thumbnailContainerStyle}>
                 <Image
@@ -37,11 +46,11 @@ const CocktailItem = (props) => {
 
 const styles = {
   thumbnailStyle: {
-    height: 50,
-    width: 50,
+    height: 90,
+    width: 90,
   },
   headerTextStyle: {
-    fontSize: 18,
+    fontSize:32,
   },
   headerContentStyle: {
     flexDirection: 'row',
@@ -56,12 +65,17 @@ const styles = {
   thumbnailContainerStyle: {
     alignItems: 'flex-end',
     justifyContent: 'space-around',
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 2,
+    marginRight: 2,
   },
-  textBaseStyle: {
-
-  }
+  ingredientsContainerStyle: {
+    paddingTop: 2,
+    marginLeft: 2,
+    height: 80,
+  },
+  ingredientitemStyle: {
+    fontSize: 14,
+    },
 }
 
 export default CocktailItem;
