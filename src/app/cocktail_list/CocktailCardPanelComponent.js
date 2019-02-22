@@ -1,7 +1,9 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-const CocktailCardPanel = (props) => {
-  const { onPress } = props;
+  const CocktailCardPanel = (props) => {
+    const { onPress } = props;
+
+
   return (
     <TouchableOpacity
         style={styles.containerStyle}

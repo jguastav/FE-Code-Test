@@ -4,7 +4,8 @@ import CocktailCard from './CocktailCardComponent';
 import CocktailCardPanel from './CocktailCardPanelComponent';
 
 const CocktailItem = (props) => {
-  const { cocktail } = props;
+
+  const { cocktail, onPress} = props;
   const {
     headerContentStyles,
     detailContentStyles,
@@ -15,9 +16,12 @@ const CocktailItem = (props) => {
     ingredientsContainerStyle,
   } = styles;
   const uri = cocktail.strDrinkThumb;
+
   return (
+
+
       <CocktailCard>
-        <CocktailCardPanel onPress={() => alert("Clicked")}>
+        <CocktailCardPanel onPress={() => onPress(cocktail.idDrink)} >
             <View style={detailContentStyles}>
                 <View style={headerContentStyles}>
                 <Text style={headerContentStyles} >{cocktail.strDrink}</Text>
