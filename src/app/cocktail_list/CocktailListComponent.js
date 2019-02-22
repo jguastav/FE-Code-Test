@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { View,ScrollView } from 'react-native';
 import axios from 'axios';
 import CocktailItem from './CocktailItemComponent';
+import CocktailHeaderList from './CocktailHeaderListComponent';
 
 class CocktailList extends Component {
   state = {
@@ -9,8 +10,6 @@ class CocktailList extends Component {
   }
 
   handleOnPress = (cocktailId) => {
-    console.log("CocktailList.handleOnPress");
-    console.log(this.state);
     this.props.switchToDetail(cocktailId);
   };
 
@@ -32,9 +31,12 @@ class CocktailList extends Component {
     console.log("CocktailList.render");
     console.log(this.state);
     return (
+      <View>
+      <CocktailHeaderList headerText={this.props.headerLabel} />
       <ScrollView>
         {this.renderCocktails()}
       </ScrollView>
+      </View>
     );
   }
 }

@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Header from '../common/HeaderComponent';
 import CocktailList from '../cocktail_list/CocktailListComponent';
 import Cocktail from '../cocktail/CocktailComponent';
-
+import axios from 'axios';
 
 class CocktailMasterDetail extends React.Component  {
 
   constructor(props) {
     super(props);
-    console.log("CocktailMasterDetail.constructor");
-    console.log(this.state);
     this.state = {
       currentCocktail: {},
+      currentCocktailId: -1,
       cocktails: [],
       currentView: props.initialView,
       showScreen:false
@@ -20,17 +18,22 @@ class CocktailMasterDetail extends React.Component  {
   }
 
 
-  switchToDetail = (cocktailId) => {
-    console.log("CocktailMasterDetail.switchToDetail");
-    console.log(this.state);
-   //  console.log("pressing detail");
-   this.setState({currentView:"detail",currentCocktail:cocktailId});
-  };
+  switchToDetail = (idDrink) => {
+    console.log("url=");
+    const url='http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+idDrink;
+    console.log(url);
+    axios.get(url)
+      .then((response) => {
+          this.setState({currentView:"detail",
+              currentCocktail:response.data.drinks[0],
+              currentCocktailId:idDrink});
+        });
+
+    };
+
+
 
   switchToMaster = () => {
-    console.log("CocktailMasterDetail.switchToMaster");
-    console.log(this.state);
-   //  console.log("pressing detail");
    this.setState({currentView:"master",currentCocktail:cocktailId});
   };
 
@@ -50,9 +53,11 @@ class CocktailMasterDetail extends React.Component  {
     console.log(this.state);
     return (
       <View>
-        <Header headerText={headerLabel} />
-        {this.state.currentView=="master" ? <CocktailList switchToDetail={this.switchToDetail} /> : null }
-        {this.state.currentView=="detail"  ? <Cocktail currentCocktail={this.state.currentCocktail} switchToMaster={this.switchToMaster}  /> : null }
+        {showList ? <CocktailList switchToDetail={this.switchToDetail} headerLabel={this.props.headerLabel} /> : null }
+        {showDetail  ? <Cocktail
+                  currentCocktail={this.state.currentCocktail}
+                  currentCocktailId={this.state.currentCocktailId}
+                  switchToMaster={this.switchToMaster}  /> : null }
       </View>
     );
   }

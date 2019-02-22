@@ -21,9 +21,8 @@ const style = {
 
 
 
-const Header = (props) => {
+const CocktailHeaderDetail = (props) => {
   const { textStyle, viewStyle } = style;
-  console.log("Draw Header");
   return (
       <View style={viewStyle}>
         <Text style={textStyle}>
@@ -32,4 +31,4 @@ const Header = (props) => {
       </View>
   );
 };
-export default Header;
+export default CocktailHeaderDetail;
