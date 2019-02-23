@@ -19,9 +19,7 @@ class CocktailMasterDetail extends React.Component  {
 
 
   switchToDetail = (idDrink) => {
-    console.log("url=");
     const url='http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+idDrink;
-    console.log(url);
     axios.get(url)
       .then((response) => {
           this.setState({currentView:"detail",
@@ -34,7 +32,7 @@ class CocktailMasterDetail extends React.Component  {
 
 
   switchToMaster = () => {
-   this.setState({currentView:"master",currentCocktail:cocktailId});
+    this.setState({currentView:"master",currentCocktail:null});
   };
 
 

@@ -27,13 +27,21 @@ class CocktailList extends Component {
 	});
   }
 
+
   render() {
-    console.log("CocktailList.render");
-    console.log(this.state);
+    const styles =
+      {listContainerStyle: {
+        backgroundColor:"#00C1D3",
+      },};
+
+
+    const {listContainerStyle}  = styles;
+
+
     return (
       <View>
       <CocktailHeaderList headerText={this.props.headerLabel} />
-      <ScrollView>
+      <ScrollView style={listContainerStyle}>
         {this.renderCocktails()}
       </ScrollView>
       </View>

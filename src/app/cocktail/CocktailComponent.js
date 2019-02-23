@@ -7,7 +7,9 @@ import {generateIngredientLabels} from '../common/Ingredients';
 
 class Cocktail extends Component {
 
-
+  switchToMaster(props) {
+    props.switchToMaster();
+  }
 
   render() {
 
@@ -44,6 +46,9 @@ class Cocktail extends Component {
       instructionsTextStyle: {
          paddingTop:14,
       },
+      containerCardStyle: {
+        backgroundColor: "#00C1D3"
+      }
     };
 
 
@@ -55,7 +60,8 @@ class Cocktail extends Component {
       thumbnailContainerStyle,
       ingredientsContainerStyle,
       instructionsHeadingStyle,
-      instructionsTextStyle
+      instructionsTextStyle,
+      containerCardStyle
     } = styles;
 
 
@@ -66,17 +72,13 @@ class Cocktail extends Component {
 
     const uri=cocktail.strDrinkThumb;
     const ingrendientsArray=generateIngredientLabels(cocktail);
-    console.log("ingrendientsArray");
-    console.log(ingrendientsArray);
     const ingredientsMap = ingrendientsArray.map(x => ({key: x}));
 
 
-    console.log("ingrendientsMap");
-    console.log(ingredientsMap);
     return (
       <View>
-        <CocktailHeaderDetail headerText={cocktail.strDrink} />
-        <ScrollView>
+        <CocktailHeaderDetail headerText={cocktail.strDrink} onPress={() => this.switchToMaster(this.props)} />
+        <ScrollView style={containerCardStyle}>
         <CocktailDetailCard>
           <Image source={{uri}}
             style={imageStyle}
