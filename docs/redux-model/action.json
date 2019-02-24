@@ -1,0 +1,35 @@
+{[
+  { type: "SHOW_COCKTAIL_LIST" },
+  { type: 'SHOW_COCKTAIL_DETAIL', idDrink: "string" },
+  { type: 'GET_COCKTAIL_LIST', },
+{ type: 'GET_COCKTAIL_LIST',
+    status:"success",
+    response: {} // it is a cocktailList
+  },
+  { type: 'GET_COCKTAIL_LIST',
+      status:"error",
+      response: "error string"
+    },
+    { type: 'GET_COCKTAIL_DETAIL',
+      idDrink: "string"
+    },
+  { type: 'GET_COCKTAIL_DETAIL',
+        status:"success",
+        response: {} // it is a cocktail
+      },
+  { type: 'GET_COCKTAIL_DETAIL',
+          status:"error",
+          response: "error string"
+        },
+  { type: 'GET_COCKTAIL_INGREDIENTS',
+      idDrink:"string"},
+  { type: 'GET_COCKTAIL_INGREDIENTS',
+            status:"success",
+            response: {} // it is a cocktail
+          },
+  { type: 'GET_COCKTAIL_INGREDIENTS',
+              status:"error",
+              response: "error string"
+            },
+
+  ]

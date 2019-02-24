@@ -35,21 +35,11 @@ class CocktailList extends Component {
     });
 
     Promise.all(ingredientPromises).then(() => {
-      console.log(drinks);
-      this.setState({cocktails: drinks})
-    }
-    );
-
-
+          console.log(drinks);
+          this.setState({cocktails: drinks})
+        }
+      );
     };
-
-    componentWillMountOld() {
-      axios.get('http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')
-        .then((response) => {
-          this.setState({cocktails: response.data.drinks});
-          });
-      };
-
 
   componentWillMount() {
     axios.get('http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')

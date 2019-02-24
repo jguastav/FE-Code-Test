@@ -4,18 +4,19 @@
  */
 
 import React from 'react';
-import {AppRegistry,View,Text} from 'react-native';
-// import App from './App';
+import {Provider} from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './src/app/common/reducers';
+import {AppRegistry} from 'react-native';
+import App from './src/app/common/components/App';
 import {name as appName} from './app.json';
-import {headerLabel as headerLabel} from './src/app/common/labels.json';
-import CocktailMasterDetail from './src/app/cocktail_master_detail/CocktailMasterDetailComponent';
 
+const store = createStore(rootReducer)
 
-const App = () => {
-    return (
-      <CocktailMasterDetail initialView="master" headerLabel={headerLabel}/>
-    );
-};
+const RNRApp = () => (
+  <Provider store = { store }>
+    <App />
+  </Provider>
+)
 
-
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => RNRApp);

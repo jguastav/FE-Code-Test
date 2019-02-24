@@ -1,0 +1,29 @@
+{
+  cocktails:[
+    strDrink:"string",
+    strDrinkThumb:"url",
+    idDrink:"stringId",
+    strIngredient1:"string",
+    strIngredient2:"string",
+    strMoreIngredients:"string"
+  ],
+  currentView: "MASTER",
+      // it could be "MASTER"|"DETAIL",
+  currentCocktail: {
+      idDrink:"string",
+      strDrink:"string",
+      strInstructions:"string",
+      strDrinkThumb:"url",
+      strIngredient1:"string",
+      strIngredient2:"string",
+      strIngredient3:"string",
+      strIngredient4:"string",
+      strIngredient5:"string",
+      // more
+      strMeasure1:"string",
+      strMeasure2:"string",
+      strMeasure3:"string",
+      // more
+
+  }
+}

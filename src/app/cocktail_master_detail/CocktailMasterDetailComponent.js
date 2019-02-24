@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import CocktailList from '../cocktail_list/CocktailListComponent';
 import Cocktail from '../cocktail/CocktailComponent';
 import axios from 'axios';
+import { ViewMode } from '../common/actionCreators'
 
 class CocktailMasterDetail extends React.Component  {
 
@@ -22,7 +23,7 @@ class CocktailMasterDetail extends React.Component  {
     const url='http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+idDrink;
     axios.get(url)
       .then((response) => {
-          this.setState({currentView:"detail",
+          this.setState({currentView:ViewMode.DETAIL,
               currentCocktail:response.data.drinks[0],
               currentCocktailId:idDrink});
         });
@@ -32,20 +33,18 @@ class CocktailMasterDetail extends React.Component  {
 
 
   switchToMaster = () => {
-    this.setState({currentView:"master",currentCocktail:null});
+    this.setState({currentView:ViewMode.MASTER,currentCocktail:null});
   };
 
 
 
   render() {
-//    console.log("CocktailMasterDetail");
-//    console.log(this.state);
     const {
       currentView,
       headerLabel,
     } = this.props;
-    const showList = this.state.currentView == "master";
-    const showDetail = this.state.currentView == "detail";
+    const showList = this.state.currentView == ViewMode.MASTER;
+    const showDetail = this.state.currentView == ViewMode.DETAIL;
 
     console.log("CocktailMasterDetail.render");
     console.log(this.state);
