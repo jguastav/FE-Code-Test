@@ -31,13 +31,16 @@ class Cocktail extends Component {
         marginRight: 10,
       },
       imageStyle: {
-        height: 300,
+        height: 280,
         flex: 1,
         width: null,
+        marginRight: 10,
+        marginLeft: 10,
+        marginTop:10
       },
       ingredientsContainerStyle : {
-        paddingTop: 2,
-        marginLeft: 2,
+        paddingTop: 5,
+        marginLeft: 10,
         height: 80,
       },
       instructionsHeadingStyle : {
@@ -45,10 +48,21 @@ class Cocktail extends Component {
       },
       instructionsTextStyle: {
          paddingTop:14,
+         marginRight: 10,
+         marginLeft: 10,
+         marginBottom:10
       },
       containerCardStyle: {
-        backgroundColor: "#00C1D3"
-      }
+        backgroundColor: "#00C1D3",
+        height:"100%",
+        paddingRight:10,
+        paddingLeft:10
+      },
+      containerDetailStyle: {
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom:10
+      },
     };
 
 
@@ -61,7 +75,8 @@ class Cocktail extends Component {
       ingredientsContainerStyle,
       instructionsHeadingStyle,
       instructionsTextStyle,
-      containerCardStyle
+      containerCardStyle,
+      containerDetailStyle
     } = styles;
 
 
@@ -79,7 +94,7 @@ class Cocktail extends Component {
       <View>
         <CocktailHeaderDetail headerText={cocktail.strDrink} onPress={() => this.switchToMaster(this.props)} />
         <ScrollView style={containerCardStyle}>
-        <CocktailDetailCard>
+        <CocktailDetailCard style={containerDetailStyle}>
           <Image source={{uri}}
             style={imageStyle}
             />

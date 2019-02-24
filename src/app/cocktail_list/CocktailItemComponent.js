@@ -70,7 +70,7 @@ const styles = {
   ingredientsContainerStyle: {
     paddingTop: 2,
     marginLeft: 2,
-    height: 100,
+    height: 75,
   },
   ingredientitemStyle: {
     fontSize: 14,
