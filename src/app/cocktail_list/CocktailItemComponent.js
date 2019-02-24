@@ -31,9 +31,9 @@ const CocktailItem = (props) => {
                         {key: cocktail.strIngredient1},
                         {key: cocktail.strIngredient2},
                       ]}
-                      renderItem={({item}) => <Text style={styles.ingredientitemStyle}>{`\u2022 ${item.key}`}</Text>}
+                      renderItem={({item}) => <Text style={ingredientitemStyle}>{`\u2022 ${item.key}`}</Text>}
                       />
-                  <Text style={ingredientitemStyle}>more ingredients</Text>
+                  <Text style={ingredientitemStyle}>{cocktail.strMoreIngredients}</Text>
                 </View>
                 </View>
             </View>
@@ -68,7 +68,7 @@ const styles = {
   },
   thumbnailContainerStyle: {
     alignItems: 'flex-end',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
     marginLeft: 2,
     marginRight: 2,
   },

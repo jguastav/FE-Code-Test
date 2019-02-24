@@ -3,6 +3,7 @@ import { View,ScrollView } from 'react-native';
 import axios from 'axios';
 import CocktailItem from './CocktailItemComponent';
 import CocktailHeaderList from './CocktailHeaderListComponent';
+import {getIngredients} from '../common/Ingredients'
 
 class CocktailList extends Component {
   state = {
@@ -21,9 +22,14 @@ class CocktailList extends Component {
           ingredientPromises.push(
             axios.get(url).then((response) => {
               drinkDetail=response.data.drinks[0];
-              console.log("got:"+drinkDetail.idDrink);
-              drink.strIngredient1=drinkDetail.strIngredient1;
-              drink.strIngredient2=drinkDetail.strIngredient2;
+              ingredientsArray=getIngredients(drinkDetail);
+              drink.strIngredient1=ingredientsArray[0];
+              drink.strIngredient2=ingredientsArray[1];
+              if (ingredientsArray.length>2) {
+                  drink.strMoreIngredients="and "+(ingredientsArray.length-2)+" more ingredients.";
+              } else {
+                  drink.strMoreIngredients="";
+              }
             })
           );
     });
