@@ -26,14 +26,9 @@ const CocktailItem = (props) => {
                 <View style={headerContentStyles}>
                 <Text style={headerContentStyles} >{cocktail.strDrink}</Text>
                 <View style={ingredientsContainerStyle}>
-                  <FlatList
-                      data={[
-                        {key: cocktail.strIngredient1},
-                        {key: cocktail.strIngredient2},
-                      ]}
-                      renderItem={({item}) => <Text style={ingredientitemStyle}>{`\u2022 ${item.key}`}</Text>}
-                      />
-                  <Text style={ingredientitemStyle}>{cocktail.strMoreIngredients}</Text>
+                      <Text style={ingredientitemStyle}>{`\u2022 ${cocktail.strIngredient1}`}</Text>
+                      <Text style={ingredientitemStyle}>{`\u2022 ${cocktail.strIngredient2}`}</Text>
+                      <Text style={ingredientitemStyle}>{cocktail.strMoreIngredients}</Text>
                 </View>
                 </View>
             </View>
@@ -75,7 +70,7 @@ const styles = {
   ingredientsContainerStyle: {
     paddingTop: 2,
     marginLeft: 2,
-    height: 80,
+    height: 100,
   },
   ingredientitemStyle: {
     fontSize: 14,
