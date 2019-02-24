@@ -13,11 +13,42 @@ class CocktailList extends Component {
     this.props.switchToDetail(cocktailId);
   };
 
+  completeDrinksIngredients(drinks) {
+
+    var ingredientPromises = [];
+    drinks.forEach(function(drink) {
+          const url='http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+drink.idDrink;
+          ingredientPromises.push(
+            axios.get(url).then((response) => {
+              drinkDetail=response.data.drinks[0];
+              console.log("got:"+drinkDetail.idDrink);
+              drink.strIngredient1=drinkDetail.strIngredient1;
+              drink.strIngredient2=drinkDetail.strIngredient2;
+            })
+          );
+    });
+
+    Promise.all(ingredientPromises).then(() => {
+      console.log(drinks);
+      this.setState({cocktails: drinks})
+    }
+    );
+
+
+    };
+
+    componentWillMountOld() {
+      axios.get('http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')
+        .then((response) => {
+          this.setState({cocktails: response.data.drinks});
+          });
+      };
+
 
   componentWillMount() {
     axios.get('http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')
       .then((response) => {
-        this.setState({cocktails: response.data.drinks});
+        this.completeDrinksIngredients(response.data.drinks);
         });
     };
 

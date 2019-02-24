@@ -28,8 +28,8 @@ const CocktailItem = (props) => {
                 <View style={ingredientsContainerStyle}>
                   <FlatList
                       data={[
-                        {key: 'Ingredient 1'},
-                        {key: 'Ingredient 2'},
+                        {key: cocktail.strIngredient1},
+                        {key: cocktail.strIngredient2},
                       ]}
                       renderItem={({item}) => <Text style={styles.ingredientitemStyle}>{`\u2022 ${item.key}`}</Text>}
                       />
