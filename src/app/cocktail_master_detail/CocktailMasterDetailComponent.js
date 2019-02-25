@@ -6,39 +6,20 @@ import { ViewMode } from '../common/actionCreators'
 
 
 
-class CocktailMasterDetail extends React.Component  {
+const CocktailMasterDetail = (props) =>  {
 
+  const showList = props.currentView == ViewMode.MASTER;
+  const showDetail = props.currentView == ViewMode.DETAIL;
 
-  switchToDetail = (idDrink) => {
-    this.props.switchToDetail(idDrink);
-  };
-
-
-
-  switchToMaster = () => {
-    this.props.switchToMaster();
-  };
-
-
-
-  render() {
-    const {
-      currentView,
-      headerLabel,
-    } = this.props;
-    const showList = currentView == ViewMode.MASTER;
-    const showDetail = currentView == ViewMode.DETAIL;
-
-    return (
+  return (
       <View>
-        {showList ? <CocktailListContainer switchToDetail={(idDrink) => { this.switchToDetail(idDrink)}} headerLabel={this.props.headerLabel} /> : null }
+        {showList ? <CocktailListContainer switchToDetail={(idDrink) => { props.switchToDetail(idDrink)}} headerLabel={props.headerLabel} /> : null }
         {showDetail  ? <Cocktail
-                  currentCocktail={this.props.currentCocktail}
-                  currentCocktailId={this.props.currentCocktailId}
-                  switchToMaster={this.switchToMaster}  /> : null }
+                  currentCocktail={props.currentCocktail}
+                  currentCocktailId={props.currentCocktailId}
+                  switchToMaster={() =>props.switchToMaster()}  /> : null }
       </View>
     );
-  }
 }
 
 export default CocktailMasterDetail;
