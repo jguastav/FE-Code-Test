@@ -11,8 +11,6 @@ const CocktailList = ({cocktailList,headerLabel,switchToDetail}) => {
 
 
   const renderCocktails = () => {
-    console.log("renderCocktails");
-    console.log(cocktailList);
     return cocktailList.map((cocktail) => {
       return <CocktailItem key={cocktail.idDrink} cocktail={cocktail} onPress={handleOnPress} />;
      });

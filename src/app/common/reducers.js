@@ -25,9 +25,6 @@ const rootReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             currentView: ViewMode.MASTER,
             cocktails: action.cocktails,});
-    case Actions.LOAD_COCKTAILS:
-
-
 
     // TODO: Add all other actions
     default:

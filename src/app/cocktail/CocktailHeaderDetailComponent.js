@@ -36,8 +36,6 @@ const CocktailHeaderDetail = (props) => {
 
   const { textStyle, viewStyle, imageStyle } = styles;
   const {onPress, headerText} = props;
-  console.log("CocktailHeaderDetail.onPress");
-  console.log(onPress);
   return (
       <View style={viewStyle}>
       <TouchableOpacity onPress={ () => props.onPress()}  style={imageStyle} >

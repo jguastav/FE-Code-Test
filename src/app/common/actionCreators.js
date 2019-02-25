@@ -13,11 +13,7 @@ export const  switchToMasterAction = (drinks) => ({
   cocktails:drinks
 })
 
-export const  loadCocktails = () => ({
-  type:Actions.LOAD_COCKTAILS,
-})
-
-export const  switchToDetail = (idDrink,currentCocktail) => ({
+export const  switchToDetailAction = (idDrink,currentCocktail) => ({
   type:Actions.SWITCH_TO_DETAIL,
   currentCocktailId:idDrink,
   currentCocktail
@@ -28,9 +24,13 @@ export const showCocktail = (idDrink) => ({
   idDrink
 })
 
-export const getCocktails = () => ({
-  type: Actions.GET_COCKTAIL_LIST,
-})
+export const getCocktails = () => {
+  return {
+    type: Actions.GET_COCKTAIL_LIST,
+  }
+}
+
+
 
 export const getCocktailsSuccess = (response) => ({
   type: Actions.GET_COCKTAIL_LIST,

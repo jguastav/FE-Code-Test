@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {getIngredients} from '../common/Ingredients'
 import {switchToMasterAction} from '../common/actionCreators'
+import {switchToDetailAction} from '../common/actionCreators'
 
 
 
@@ -41,3 +42,13 @@ const completeDrinksIngredients = (dispatch, drinks) => {
           }
         );
       };
+
+
+export const getCocktailAndswitchToDetail = (dispatch, idDrink) => {
+    const url='http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+idDrink;
+    axios.get(url)
+      .then((response) => {
+          dispatch(switchToDetailAction(idDrink,response.data.drinks[0]));
+        });
+
+    };
