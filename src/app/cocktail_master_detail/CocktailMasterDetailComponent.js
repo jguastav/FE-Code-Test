@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import CocktailList from '../cocktail_list/CocktailListComponent';
+import CocktailListContainer from '../cocktail_list/CocktailListContainer';
 import Cocktail from '../cocktail/CocktailComponent';
 import axios from 'axios';
 import { ViewMode } from '../common/actionCreators'
-
 class CocktailMasterDetail extends React.Component  {
 
   constructor(props) {
@@ -46,11 +45,9 @@ class CocktailMasterDetail extends React.Component  {
     const showList = this.state.currentView == ViewMode.MASTER;
     const showDetail = this.state.currentView == ViewMode.DETAIL;
 
-    console.log("CocktailMasterDetail.render");
-    console.log(this.state);
     return (
       <View>
-        {showList ? <CocktailList switchToDetail={this.switchToDetail} headerLabel={this.props.headerLabel} /> : null }
+        {showList ? <CocktailListContainer switchToDetail={this.switchToDetail} headerLabel={this.props.headerLabel} /> : null }
         {showDetail  ? <Cocktail
                   currentCocktail={this.state.currentCocktail}
                   currentCocktailId={this.state.currentCocktailId}
