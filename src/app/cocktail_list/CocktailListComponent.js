@@ -3,39 +3,35 @@ import { View,ScrollView } from 'react-native';
 import CocktailItem from './CocktailItemComponent';
 import CocktailHeaderList from './CocktailHeaderListComponent';
 
-class CocktailList extends Component {
+const CocktailList = (props) => {
 
-  handleOnPress = (cocktailId) => {
-    this.props.switchToDetail(cocktailId);
+  const handleOnPress = (cocktailId) => {
+    props.switchToDetail(cocktailId);
   };
 
 
-  renderCocktails = () => {
-    return this.props.cocktailList.map((cocktail) => {
-      return <CocktailItem key={cocktail.idDrink} cocktail={cocktail} onPress={this.handleOnPress} />;
+  const renderCocktails = () => {
+    return props.cocktailList.map((cocktail) => {
+      return <CocktailItem key={cocktail.idDrink} cocktail={cocktail} onPress={handleOnPress} />;
      });
   }
 
-
-  render() {
-    const styles =
-      {listContainerStyle: {
-        backgroundColor:"#00C1D3",
-      },};
+  const styles =
+    {listContainerStyle: {
+      backgroundColor:"#00C1D3",
+    },};
 
 
-    const {listContainerStyle}  = styles;
-
+  const {listContainerStyle}  = styles;
 
     return (
       <View>
-      <CocktailHeaderList headerText={this.props.headerLabel} />
+      <CocktailHeaderList headerText={props.headerLabel} />
       <ScrollView style={listContainerStyle}>
-        {this.renderCocktails()}
+        {renderCocktails()}
       </ScrollView>
       </View>
     );
-  }
 }
 
 export default CocktailList;
