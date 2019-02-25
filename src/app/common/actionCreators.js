@@ -1,6 +1,9 @@
 import * as Actions from "./actionTypes";
 import {getAllCocktails} from '../cocktail_list/service'
 import {getCocktailAndswitchToDetail} from '../cocktail_list/service'
+import {getAllCocktailsPromise} from '../cocktail_list/service'
+import {completeDrinksIngredientsPromises} from '../cocktail_list/service'
+import {getCocktailDetailPromise} from '../cocktail_list/service'
 
 
 let nextTodoId = 0
@@ -28,7 +31,16 @@ export const showCocktail = (idDrink) => ({
 export function getCocktails() {
   return dispatch => {
     dispatch({type: Actions.GET_COCKTAIL_LIST});
-    return getAllCocktails(dispatch);
+    cocktailsPromise=getAllCocktailsPromise();
+    cocktailsPromise.then((response) => {
+        drinks = response.data.drinks;
+        ingredientPromises=completeDrinksIngredientsPromises(drinks);
+        Promise.all(ingredientPromises).then(() => {
+              dispatch(switchToMasterAction(drinks));
+            }
+          );
+
+      });
   }
 }
 
@@ -36,12 +48,12 @@ export function getCocktailAction(idDrink) {
   return dispatch => {
     dispatch({type: Actions.GET_COCKTAIL_DETAIL,
       idDrink});
-    return getCocktailAndswitchToDetail(dispatch,idDrink);
+      cocktailDetailPromise = getCocktailDetailPromise(idDrink);
+      return cocktailDetailPromise.then((response) => {
+          dispatch(switchToDetailAction(idDrink,response.data.drinks[0]));
+        });
   }
 }
-
-
-
 
 export const getCocktailsSuccess = (response) => ({
   type: Actions.GET_COCKTAIL_LIST,
