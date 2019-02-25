@@ -10,8 +10,10 @@ import rootReducer from './src/app/common/reducers';
 import {AppRegistry} from 'react-native';
 import App from './src/app/common/components/App';
 import {name as appName} from './app.json';
+import {getAllCocktails} from './src/app/cocktail_list/service'
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer);
+getAllCocktails(store.dispatch);
 
 const RNRApp = () => (
   <Provider store = { store }>

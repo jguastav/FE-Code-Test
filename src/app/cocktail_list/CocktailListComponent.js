@@ -3,15 +3,17 @@ import { View,ScrollView } from 'react-native';
 import CocktailItem from './CocktailItemComponent';
 import CocktailHeaderList from './CocktailHeaderListComponent';
 
-const CocktailList = (props) => {
+const CocktailList = ({cocktailList,headerLabel,switchToDetail}) => {
 
   const handleOnPress = (cocktailId) => {
-    props.switchToDetail(cocktailId);
+    switchToDetail(cocktailId);
   };
 
 
   const renderCocktails = () => {
-    return props.cocktailList.map((cocktail) => {
+    console.log("renderCocktails");
+    console.log(cocktailList);
+    return cocktailList.map((cocktail) => {
       return <CocktailItem key={cocktail.idDrink} cocktail={cocktail} onPress={handleOnPress} />;
      });
   }
@@ -26,7 +28,7 @@ const CocktailList = (props) => {
 
     return (
       <View>
-      <CocktailHeaderList headerText={props.headerLabel} />
+      <CocktailHeaderList headerText={headerLabel} />
       <ScrollView style={listContainerStyle}>
         {renderCocktails()}
       </ScrollView>

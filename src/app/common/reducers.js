@@ -1,8 +1,3 @@
-import { combineReducers } from 'redux'
-import currentView from '../cocktail_master_detail/reducers'
-import currentCocktail from '../cocktail/reducers'
-import cocktails from '../cocktail_list/reducers'
-import currentCocktailIdReducer from '../cocktail_list/currentCocktailIdReducer'
 import { ViewMode } from './actionCreators'
 import {headerLabel} from './labels.json';
 import * as Actions from "./actionTypes";
@@ -26,11 +21,22 @@ const rootReducer = (state = initialState, action) => {
             currentView: ViewMode.DETAIL,
             currentCocktail: action.currentCocktail,
             currentCocktailId:action.currentCocktailId});
+    case Actions.SWITCH_TO_MASTER:
+        return Object.assign({}, state, {
+            currentView: ViewMode.MASTER,
+            cocktails: action.cocktails,});
+    case Actions.LOAD_COCKTAILS:
+
+
+
     // TODO: Add all other actions
     default:
       return state
   }
 }
+
+
+
 
 
 

@@ -8,6 +8,15 @@ export const showCocktails = () => ({
   type: Actions.SHOW_COCKTAIL_LIST,
 })
 
+export const  switchToMasterAction = (drinks) => ({
+  type:Actions.SWITCH_TO_MASTER,
+  cocktails:drinks
+})
+
+export const  loadCocktails = () => ({
+  type:Actions.LOAD_COCKTAILS,
+})
+
 export const  switchToDetail = (idDrink,currentCocktail) => ({
   type:Actions.SWITCH_TO_DETAIL,
   currentCocktailId:idDrink,
