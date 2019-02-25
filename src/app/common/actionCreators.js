@@ -1,5 +1,6 @@
 import * as Actions from "./actionTypes";
 import {getAllCocktails} from '../cocktail_list/service'
+import {getCocktailAndswitchToDetail} from '../cocktail_list/service'
 
 
 let nextTodoId = 0
@@ -30,6 +31,15 @@ export function getCocktails() {
     return getAllCocktails(dispatch);
   }
 }
+
+export function getCocktailAction(idDrink) {
+  return dispatch => {
+    dispatch({type: Actions.GET_COCKTAIL_DETAIL,
+      idDrink});
+    return getCocktailAndswitchToDetail(dispatch,idDrink);
+  }
+}
+
 
 
 

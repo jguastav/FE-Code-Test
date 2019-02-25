@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import CocktailList from './CocktailListComponent';
 import { connect } from 'react-redux'
-import {getCocktailAndswitchToDetail} from './service'
+import {getCocktailAction} from '../common/actionCreators'
 
 
 // TODO:Ensure switch to master refresh the info
 // currently is accessing the same initial array
-
-
-  const handleOnPress = (dispatch, cocktailId) => {
-      getCocktailAndswitchToDetail(dispatch, cocktailId);
-  };
-
 
 const mapStateToProps = state => (
   {
@@ -22,7 +16,7 @@ const mapStateToProps = state => (
 
 
 const mapDispatchToProps = dispatch => ({
-  switchToDetail: idDrink => getCocktailAndswitchToDetail(dispatch,idDrink),
+  switchToDetail: idDrink => dispatch(getCocktailAction(idDrink)),
 })
 
 export default connect(
