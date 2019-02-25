@@ -8,6 +8,12 @@ export const showCocktails = () => ({
   type: Actions.SHOW_COCKTAIL_LIST,
 })
 
+export const  switchToDetail = (idDrink,currentCocktail) => ({
+  type:Actions.SWITCH_TO_DETAIL,
+  currentCocktailId:idDrink,
+  currentCocktail
+})
+
 export const showCocktail = (idDrink) => ({
   type: Actions.SHOW_COCKTAIL_DETAIL,
   idDrink

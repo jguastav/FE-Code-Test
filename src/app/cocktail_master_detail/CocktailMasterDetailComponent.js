@@ -6,18 +6,18 @@ import { ViewMode } from '../common/actionCreators'
 
 
 
-const CocktailMasterDetail = (props) =>  {
+const CocktailMasterDetail = ({ currentView, headerLabel, currentCocktail, currentCocktailId, switchToDetail, switchToMaster}) =>  {
 
-  const showList = props.currentView == ViewMode.MASTER;
-  const showDetail = props.currentView == ViewMode.DETAIL;
+  const showList = currentView == ViewMode.MASTER;
+  const showDetail = currentView == ViewMode.DETAIL;
 
   return (
       <View>
-        {showList ? <CocktailListContainer switchToDetail={(idDrink) => { props.switchToDetail(idDrink)}} headerLabel={props.headerLabel} /> : null }
+        {showList ? <CocktailListContainer switchToDetail={(idDrink) => { switchToDetail(idDrink)}} headerLabel={headerLabel} /> : null }
         {showDetail  ? <Cocktail
-                  currentCocktail={props.currentCocktail}
-                  currentCocktailId={props.currentCocktailId}
-                  switchToMaster={() =>props.switchToMaster()}  /> : null }
+                  currentCocktail={currentCocktail}
+                  currentCocktailId={currentCocktailId}
+                  switchToMaster={() =>switchToMaster()}  /> : null }
       </View>
     );
 }
